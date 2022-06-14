@@ -61,24 +61,26 @@ const droneControls = {
 function droneControlling() {
   window.addEventListener("keydown", (keys) => {
     if (keys.key === "w") {
-      droneControls.y--;
+      droneControls.y= -10;
+   
     } else if (keys.key === "s") {
-      droneControls.y++;
+      droneControls.y =10;
     } else if (keys.key === "a") {
-      droneControls.x =1;
+      droneControls.x = 1;
     } else if (keys.key === "d") {
-      droneControls.x =-1;
+      droneControls.x = -1;
     }
   });
   window.addEventListener("keyup", (keys) => {
     if (keys.key === "w") {
-      droneControls.y=0;
+      droneControls.y = 0;
+  
     } else if (keys.key === "s") {
-      droneControls.y=0;
+      droneControls.y = 0;
     } else if (keys.key === "a") {
-      droneControls.x=0.01;
+      droneControls.x = 0.01;
     } else if (keys.key === "d") {
-      droneControls.x=-0.01;
+      droneControls.x = -0.01;
     }
   });
 }
@@ -102,7 +104,10 @@ loader.load(modelUrl, (model) => {
   const droneAnimation = () => {
     camera.lookAt(drone.position);
     const delta = clock.getDelta();
-    const moveDistance = 5 * delta;
+    const moveDistance = 2.5 * delta;
+    if (droneControls.y  ) {
+        
+    }
 
     // if (keyboard.pressed("down"))
     //     drone.translateZ(moveDistance);
@@ -121,8 +126,8 @@ loader.load(modelUrl, (model) => {
     //     drone.rotateOnAxis( new THREE.Vector3(0,1,0), rotateAngle);
     // if (keyboard.pressed("d"))
     //     drone.rotateOnAxis( new THREE.Vector3(0,1,0), -rotateAngle);
-    drone.translateZ(droneControls.y * 0.02);
-    drone.rotateY(droneControls.x * 0.02);
+    drone.translateZ(droneControls.y * moveDistance);
+    drone.rotateY(droneControls.x * moveDistance);
 
     requestAnimationFrame(droneAnimation);
   };
@@ -150,7 +155,7 @@ const size = {
  * camera
  */
 
-const camera = new THREE.PerspectiveCamera(5, size.width / size.height);
+const camera = new THREE.PerspectiveCamera(3.5, size.width / size.height);
 camera.position.z = 2;
 camera.position.x = -166.18;
 camera.position.y = 163.31;
