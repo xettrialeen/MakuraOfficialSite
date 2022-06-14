@@ -1,0 +1,15 @@
+@use "../abstracts/abstract__helpers" as *;
+@use "../base/base__helpers" as *;
+body {
+  background-color: #dcbfaf;
+}
+
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+  overflow: hidden;
+}
+
